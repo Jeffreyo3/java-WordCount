@@ -21,15 +21,15 @@ public class Main {
         Map<String, Integer> wordHashMap = new HashMap<>();
 
         for (String w: words) {
-            Integer duplicatePrevKeyValue = wordHashMap.put(w,0);
-            System.out.println(duplicatePrevKeyValue);
+            Integer duplicatePrevKeyValue = wordHashMap.get(w.toUpperCase());
+            
             if(duplicatePrevKeyValue == null)
             {
-                wordHashMap.put(w, 1);
+                wordHashMap.put(w.toUpperCase(), 1);
             } 
             else
             {
-                wordHashMap.put(w,duplicatePrevKeyValue + 1);
+                wordHashMap.put(w.toUpperCase(),duplicatePrevKeyValue + 1);
             }
         }
         List<HashMap.Entry<String, Integer>> sorted = new ArrayList<>(wordHashMap.entrySet());
