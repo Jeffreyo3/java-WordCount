@@ -29,7 +29,7 @@ Below, the ***United Nation’s Declaration of Human Rights*** is provided as a 
   * Words such as co-operation that contain a hyphen are considered one word.
   * A hyphen alone does not separate words. Numbers count as one word, so 23 is a word.
 
-* [ ] Print to the console the top 50 appearing words along with their counts.
+* [x] Print to the console the top 50 appearing words along with their counts.
 
   * Remember that HashMaps are not sorted nor easily sortable. You could convert the HashMap to an array list and then sort the array list. Alternatively, you can find the most common word, print it, remove it, and repeat the process.
 

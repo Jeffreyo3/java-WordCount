@@ -18,27 +18,30 @@ public class Main {
         System.out.println("***************");
         // Split string into words
         String[] words = filtered.split(" +");
-        Map<String, Integer> wordHashMap = new HashMap<>();
+        HashMap<String, Integer> wordHashMap = new HashMap<>();
 
         for (String w: words) {
-            Integer duplicatePrevKeyValue = wordHashMap.get(w.toUpperCase());
+            Integer duplicatePrevKeyValue = wordHashMap.put(w.toUpperCase(), 1);
             
             if(duplicatePrevKeyValue == null)
             {
-                wordHashMap.put(w.toUpperCase(), 1);
+                continue;
             } 
             else
             {
                 wordHashMap.put(w.toUpperCase(),duplicatePrevKeyValue + 1);
             }
         }
-        List<HashMap.Entry<String, Integer>> sorted = new ArrayList<>(wordHashMap.entrySet());
-        // sorted.sort(Comparator.comparing(o -> (o.getValue())));
+        ArrayList<HashMap.Entry<String, Integer>> sorted = new ArrayList<>(wordHashMap.entrySet());
         Collections.sort(sorted, Collections.reverseOrder(Comparator.comparing(o -> (o.getValue()))));
+        int count = 0;
 
         for(Entry<String, Integer> w: sorted)
         {
-            System.out.println(w);
+            if(count < 50){
+                System.out.println("#" + (count+1) + " Common Word <" + w.getKey() + "> occurs " + w.getValue() + " times.");
+            }
+            count++;
         }
         
     }
