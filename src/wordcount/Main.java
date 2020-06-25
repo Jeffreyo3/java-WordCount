@@ -18,7 +18,7 @@ public class Main {
         System.out.println("***************");
         // Split string into words
         String[] words = filtered.split(" +");
-        HashMap<String, Integer> wordHashMap = new HashMap<>();
+        Map<String, Integer> wordHashMap = new HashMap<>();
 
         for (String w: words) {
             Integer duplicatePrevKeyValue = wordHashMap.put(w.toUpperCase(), 1);
@@ -32,17 +32,26 @@ public class Main {
                 wordHashMap.put(w.toUpperCase(),duplicatePrevKeyValue + 1);
             }
         }
-        ArrayList<HashMap.Entry<String, Integer>> sorted = new ArrayList<>(wordHashMap.entrySet());
+        List<HashMap.Entry<String, Integer>> sorted = new ArrayList<>(wordHashMap.entrySet());
         Collections.sort(sorted, Collections.reverseOrder(Comparator.comparing(o -> (o.getValue()))));
+        List<HashMap.Entry> topFifty = new ArrayList<>();
         int count = 0;
 
         for(Entry<String, Integer> w: sorted)
         {
             if(count < 50){
                 System.out.println("#" + (count+1) + " Common Word <" + w.getKey() + "> occurs " + w.getValue() + " times.");
+                topFifty.add(w);
             }
             count++;
         }
+
+
+        System.out.println("\n*** STRETCH ***\n");
+        Collections.sort(topFifty, (v1, v2) -> ((String) v1.getKey()).compareTo((String) (v2.getKey())));
+        System.out.println(topFifty);
+
+        topFifty.forEach(w -> System.out.println("Common Word <" + w.getKey() + "> occurs " + w.getValue() + " times."));
         
     }
 }
